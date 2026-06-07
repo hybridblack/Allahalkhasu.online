@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insya-Allah | ALLAH ALKHASU</title>
+    <style>
+        :root {
+            --emerald-deep: #0f2a22;
+            --emerald-mid: #163e32;
+            --gold-accent: #d4af37;
+            --gold-light: #f7f4eb;
+            --text-main: #2d3732;
+            --text-muted: #5a6560;
+            --bg-clean: #faf9f6;
+            --white: #ffffff;
+            --shadow-sm: 0 2px 8px rgba(15, 42, 34, 0.04);
+            --shadow-md: 0 12px 30px rgba(15, 42, 34, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-clean);
+            color: var(--text-main);
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .nav-accent {
+            height: 6px;
+            background: linear-gradient(90deg, var(--emerald-deep), var(--gold-accent), var(--emerald-mid));
+            width: 100%;
+        }
+
+        .main-wrapper {
+            max-width: 800px;
+            margin: 60px auto;
+            padding: 0 24px;
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: 16px;
+            box-shadow: var(--shadow-md);
+            padding: 50px 45px;
+            border: 1px solid rgba(22, 62, 50, 0.05);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: var(--gold-light);
+            color: var(--emerald-mid);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 6px 16px;
+            border-radius: 50px;
+            margin-bottom: 16px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        h1 {
+            font-family: "Georgia", serif;
+            color: var(--emerald-deep);
+            font-size: 2.4rem;
+            font-weight: 400;
+            line-height: 1.3;
+            letter-spacing: -0.5px;
+        }
+
+        .lead-text {
+            font-size: 1.15rem;
+            color: var(--text-main);
+            font-weight: 500;
+            margin-bottom: 24px;
+        }
+
+        p {
+            margin-bottom: 24px;
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+
+        .scripture-box {
+            background-color: var(--gold-light);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 35px 0;
+            border-left: 5px solid var(--gold-accent);
+        }
+
+        .scripture-box p {
+            color: var(--emerald-deep);
+            font-style: italic;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            font-family: "Georgia", serif;
+        }
+
+        .scripture-source {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--emerald-mid);
+            font-weight: 600;
+        }
+
+        .hadith-box {
+            background-color: #f0f4f2;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 35px 0;
+            border-left: 5px solid var(--emerald-mid);
+        }
+
+        .hadith-box p {
+            color: var(--emerald-deep);
+            font-size: 1.05rem;
+            margin-bottom: 8px;
+        }
+
+        /* --- MODERN IMAGE SLIDER CLASSIC STYLING --- */
+        .slider-wrapper {
+            margin: 40px 0;
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            background: #000;
+        }
+
+        .slider-container {
+            display: flex;
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            width: 100%;
+            height: 450px;
+        }
+
+        .slide {
+            min-width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Nav Arrows */
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.85);
+            color: var(--emerald-deep);
+            border: none;
+            width: 44px;
+            height: 44px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1.25rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            transition: all 0.2s ease;
+            z-index: 10;
+        }
+
+        .slider-btn:hover {
+            background: var(--white);
+            scale: 1.05;
+        }
+
+        .btn-prev { left: 16px; }
+        .btn-next { right: 16px; }
+
+        /* Dots Indicator */
+        .slider-dots {
+            position: absolute;
+            bottom: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 10;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .dot.active {
+            background: var(--white);
+            width: 20px;
+            border-radius: 4px;
+        }
+
+        .slider-caption {
+            background-color: #f8f8f6;
+            padding: 16px 20px;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            font-style: italic;
+            border-top: 1px solid #eee;
+            text-align: center;
+        }
+
+        /* --- ACTION PANEL --- */
+        .action-panel {
+            background-color: var(--emerald-deep);
+            color: var(--white);
+            border-radius: 14px;
+            padding: 40px;
+            margin-top: 50px;
+            box-shadow: 0 8px 24px rgba(15, 42, 34, 0.15);
+        }
+
+        .action-panel h2 {
+            font-family: "Georgia", serif;
+            color: var(--gold-accent);
+            font-size: 1.6rem;
+            font-weight: 400;
+            margin-bottom: 12px;
+        }
+
+        .action-panel p {
+            color: #b3c2bd;
+            font-size: 0.95rem;
+            margin-bottom: 24px;
+        }
+
+        .btn-primary {
+            display: block;
+            width: 100%;
+            background-color: var(--gold-accent);
+            color: var(--emerald-deep);
+            text-align: center;
+            padding: 16px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.2);
+        }
+
+        .btn-primary:hover {
+            background-color: #e5be43;
+            transform: translateY(-1px);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 0.85rem;
+            color: #999;
+        }
+
+        @media (max-width: 600px) {
+            .main-wrapper { margin: 20px auto; padding: 0 12px; }
+            .card { padding: 30px 20px; border-radius: 12px; }
+            h1 { font-size: 1.8rem; }
+            .slider-container { height: 300px; }
+            .action-panel { padding: 24px 20px; }
+        }
+    </style>
+</head>
+<body>
+    
+<div class="nav-accent"></div>
+
+<div class="main-wrapper">
+    <div class="card">
+        <header>
+            <span class="badge">الله الخاص</span>
+            <h1 style="font-weight: 700; letter-spacing: 0.5px; margin-bottom: 8px;">ALLAH ALKHASU</h1>
+            <p style="font-family: 'Georgia', serif; font-size: 1.2rem; color: var(--emerald-mid); font-style: italic; margin-bottom: 0;">Menyokong Komuniti dalam Krisis</p>
+        </header>
+
+        <p class="lead-text">Saudara dan saudari yang dihormati,</p>
+
+        <p>Sebagai umat Islam, kita dipanggil untuk menegakkan nilai-nilai belas kasihan, belas kasihan, dan kemurahan hati yang dijelmakan oleh iman kita. Pada masa krisis, sama ada disebabkan oleh bencana alam, konflik, atau kemiskinan, terdapat banyak individu dan keluarga yang sangat memerlukan sokongan kita. Adalah menjadi kewajipan kita untuk bertindak balas terhadap penderitaan mereka dengan kebaikan dan tindakan.</p>
+
+        <div class="scripture-box">
+            <p>"Dan berbuat baik; Sesungguhnya Allah mengasihi orang-orang yang berbuat baik."</p>
+            <span class="scripture-source">Surah Al-Baqarah 2:195</span>
+        </div>
+
+        <p>Dalam semangat perpaduan, mari kita bersatu sebagai sebuah komuniti untuk menghulurkan bantuan kepada mereka yang menghadapi kesukaran. Sama ada menyediakan bantuan kewangan, menjadi sukarelawan masa atau menderma barangan keperluan, setiap usaha penting dan memberi kesan. Kita boleh menjadi sumber harapan bagi mereka yang berasa hilang dan keseorangan dalam perjuangan mereka.</p>
+
+        <div class="slider-wrapper">
+            <button class="slider-btn btn-prev" onclick="moveSlide(-1)">&#10094;</button>
+            <button class="slider-btn btn-next" onclick="moveSlide(1)">&#10095;</button>
+            
+            <div class="slider-container" id="slider">
+                <div class="slide">
+                    <img src="https://i.ibb.co/Kch9S16k/images-5.jpg" alt="Community Prayers">
+                </div>
+                <div class="slide">
+                    <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&q=80&w=800" alt="Relief Goods">
+                </div>
+                <div class="slide">
+                    <img src="https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&q=80&w=800" alt="Support Infrastructure">
+                </div>
+                <div class="slide">
+                    <img src="https://i.ibb.co/r2qrHTp6/images-1.jpg" alt="Aid Distribution Grid">
+                </div>
+                <div class="slide">
+                    <img src="https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?auto=format&fit=crop&q=80&w=800" alt="Charity Distribution">
+                </div>
+            </div>
+
+            <div class="slider-dots">
+                <div class="dot active" onclick="setSlide(0)"></div>
+                <div class="dot" onclick="setSlide(1)"></div>
+                <div class="dot" onclick="setSlide(2)"></div>
+                <div class="dot" onclick="setSlide(3)"></div>
+                <div class="dot" onclick="setSlide(4)"></div>
+            </div>
+        </div>
+        <div class="slider-caption">
+            Berdiri bersama dalam iman, doa, dan tindakan untuk menyokong usaha bantuan di seluruh rantau ini.
+        </div>
+
+        <p>Menyokong mereka yang mengalami krisis bukan sekadar tindakan amal; ia adalah peluang untuk melakukan kerja Tuhan. Ia membolehkan kita menghayati nilai-nilai kita, menunjukkan iman kita, dan memenuhi perintah untuk menjaga jiran kita. Ia adalah peluang untuk mencerminkan intipati sebenar Islam—menunjukkan belas kasihan kepada semua, tanpa mengira latar belakang atau situasi mereka.</p>
+
+        <div class="hadith-box">
+            <p>Nabi kita yang tercinta Muhammad (Selawat ke atasnya) bersabda: <strong>"Yang terbaik daripada orang adalah mereka yang membawa manfaat paling banyak kepada seluruh umat manusia."</strong></p>
+            <span class="scripture-source">Diriwayatkan oleh Al-Tabarani</span>
+        </div>
+
+        <p>Saya menggesa anda, komuniti yang dikasihi, untuk melihat sekeliling anda dan melihat di mana bantuan anda diperlukan. Sama ada menyokong inisiatif tempatan, menyumbang kepada usaha global, atau membantu jiran yang memerlukan, setiap tindakan adalah penting. Mari kita bersatu usaha kita dan membuka hati kita kepada mereka yang menderita.</p>
+
+        <p>Dalam masa-masa yang mencabar ini, marilah kita bangkit dan merangkumi prinsip-prinsip iman kita. Bersama-sama, kita boleh membawa cahaya ke sudut paling gelap dan menghulurkan tangan kita kepada mereka yang paling memerlukannya.</p>
+
+        <p>Semoga Allah memberi ganjaran kepada anda atas kemurahan hati anda dan membimbing kami semua dalam memenuhi kehendak-Nya.</p>
+
+        <p style="margin-bottom: 0;"><em>Dengan harapan dan galakan yang ikhlas,</em></p>
+        
+        <div style="background-color: var(--gold-light); border-radius: 12px; padding: 35px; margin: 40px 0; border: 1px solid rgba(212, 175, 55, 0.3); text-align: center;">
+            <p dir="rtl" style="font-family: 'Traditional Arabic', 'Simplified Arabic', serif; font-size: 1.8rem; color: var(--emerald-deep); line-height: 2.2; margin-bottom: 20px; font-weight: bold; font-display: swap;">
+                وَأَنفِقُوا۟ مِن مَّا رَزَقْنَـٰكُم مِّن قَبْلِ أَن يَأْتِىَ أَحَدَكُمُ ٱلْمَوْتُ فَيَقُولَ رَبِّ لَوْلَآ أَخَّرْتَنِىٓ إِلَىٰٓ أَجَلٍۢ قَرِيبٍۢ فَأَصَّدَّقَ وَأَكُن مِّنَ ٱلصَّـٰلِحِينَ
+            </p>
+            <p style="font-family: 'Georgia', serif; font-style: italic; font-size: 1.15rem; color: var(--emerald-mid); line-height: 1.8; margin-bottom: 12px; padding: 0 10px;">
+                "Dan berdermalah daripada apa yang Kami sediakan untuk kamu sebelum kematian datang kepada salah seorang daripada kamu, dan kamu berseru: 'Tuhanku! Kalaulah Engkau menangguhkan aku sebentar, aku akan bersedekah dan menjadi salah seorang daripada orang-orang yang soleh.'"
+            </p>
+            <span style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-muted); font-weight: 600; display: block;">
+                — Surah Al-Munafiqun | 63:10
+            </span>
+        </div>
+
+        <div class="action-panel">
+            <h2>Bertindak balas kepada keperluan</h2>
+            <p style="color: #b3c2bd;">Sila pilih platform pembayaran selamat pilihan anda untuk melengkapkan derma anda dengan selamat:</p>
+
+            <div style="display: flex; flex-direction: column; gap: 14px;">
+                <a href="https://paypal.me/your-profile" class="btn-primary" target="_blank" style="background-color: #ffffff; color: #003087;">
+                    Sokongan melalui PayPal
+                </a>
+
+                <button onclick="toggleCryptoBox()" class="btn-primary" style="background-color: #f7a600; color: #ffffff; border: none; cursor: pointer; font-family: inherit;">
+                    Derma melalui Mata Wang Kripto (BTC, ETH, USDT)
+                </button>
+            </div>
+
+            <div id="crypto-addresses" style="display: none; margin-top: 20px; padding: 20px; background-color: rgba(255,255,255,0.08); border-radius: 8px; border: 1px dashed var(--gold-accent); text-align: left;">
+                <p style="color: var(--gold-accent); font-weight: 600; margin-bottom: 12px; font-size: 1rem;">Alamat Dompet Yayasan Rasmi:</p>
+                
+                <div style="margin-bottom: 12px;">
+                    <strong style="display: block; font-size: 0.85rem; color: #ffffff; margin-bottom: 4px;">Bitcoin (BTC):</strong>
+                    <code style="display: block; background: #000; padding: 10px; border-radius: 4px; font-size: 0.9rem; word-break: break-all; color: #f7a600; font-family: monospace;">bc1qj63d2e0479p6qcun5329vrltftgcums3h4duts</code>
+                </div>
+
+                <div style="margin-bottom: 12px;">
+                    <strong style="display: block; font-size: 0.85rem; color: #ffffff; margin-bottom: 4px;">Ethereum / USDT (ERC-20):</strong>
+                    <code style="display: block; background: #000; padding: 10px; border-radius: 4px; font-size: 0.9rem; word-break: break-all; color: #f7a600; font-family: monospace;">0x82bAF8764006a98AD1559693e25b68F6c862aE67</code>
+                </div>
+                
+                <span style="font-size: 0.8rem; color: #b3c2bd; display: block; margin-top: 10px; font-style: italic;">
+                    *Sila pastikan anda menghantar hanya jenis aset yang betul ke setiap alamat masing-masing untuk mengelakkan kehilangan dana.
+                </span>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>Semoga Allah menerima usaha ini daripada kita semua.</p>
+    </footer>
+</div>
+
+<script>
+    let currentIdx = 0;
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.dot');
+    const slider = document.getElementById('slider');
+
+    function updateSliderPosition() {
+        slider.style.transform = `translateX(-${currentIdx * 100}%)`;
+        dots.forEach(dot => dot.classList.remove('active'));
+        dots[currentIdx].classList.add('active');
+    }
+
+    function moveSlide(direction) {
+        currentIdx += direction;
+        if (currentIdx >= slides.length) {
+            currentIdx = 0;
+        } else if (currentIdx < 0) {
+            currentIdx = slides.length - 1;
+        }
+        updateSliderPosition();
+    }
+
+    function setSlide(index) {
+        currentIdx = index;
+        updateSliderPosition();
+    }
+
+    function toggleCryptoBox() {
+        const cryptoBox = document.getElementById('crypto-addresses');
+        if (cryptoBox.style.display === 'none') {
+            cryptoBox.style.display = 'block';
+        } else {
+            cryptoBox.style.display = 'none';
+        }
+    }
+</script>
+
+<!-- Start of Tawk.to Script -->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/6a14f3684298741c3c115254/1jpgtdksk';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!-- End of Tawk.to Script -->
+
+</body>
+</html>
