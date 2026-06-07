@@ -285,9 +285,48 @@
             .slider-container { height: 300px; }
             .action-panel { padding: 24px 20px; }
         }
+        .site-header {
+    background-color: #FFFFFF;
+    border-bottom: 1px solid #E0E0E0;
+    padding: 15px 20px;
+    margin-bottom: 30px;
+        }
+       .header-container {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+       }
+       #langPicker {
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 1px solid #E0E0E0;
+    font-size: 0.9rem;
+    background-color: #FCFCFC;
+    cursor: pointer;
+      }
+
     </style>
 </head>
 <body>
+<header class="site-header">
+    <div class="header-container">
+        <div class="brand-logo">
+            <span class="badge-ar">الله الخاص</span>
+            <h1>ALLAH ALKHASU</h1>
+        </div>
+        <div class="language-selector">
+            <select id="langPicker" onchange="switchLanguage(this.value)">
+                <option value="/">العربية (Arabic)</option>
+                <option value="/fa/">فارسی (Farsi)</option>
+                <option value="/hin/">हिन्दी (Hindi)</option>
+                <option value="/tr/">Türkçe (Turkish)</option>
+                <option value="/ms/">Bahasa Melayu (Malay)</option>
+            </select>
+        </div>
+    </div>
+</header>
     
 <div class="nav-accent"></div>
 
@@ -441,6 +480,23 @@
             cryptoBox.style.display = 'none';
         }
     }
+</script>
+    <script>
+    function switchLanguage(targetPath) {
+        window.location.href = targetPath;
+    }
+
+    // Ensures the menu displays the language the user is currently looking at
+    document.addEventListener("DOMContentLoaded", function() {
+        const path = window.location.pathname;
+        const picker = document.getElementById("langPicker");
+        
+        if (path.includes('/fa/')) picker.value = "/fa/";
+        else if (path.includes('/hin/')) picker.value = "/hin/";
+        else if (path.includes('/tr/')) picker.value = "/tr/";
+        else if (path.includes('/ms/')) picker.value = "/ms/";
+        else picker.value = "/";
+    });
 </script>
 
 <!-- Start of Tawk.to Script -->
