@@ -285,60 +285,130 @@
             .slider-container { height: 300px; }
             .action-panel { padding: 24px 20px; }
         }
-        .site-header {
+.site-header {
+    background: radial-gradient(ellipse at center, #063522 0%, #02120b 100%);
+    
+    border-bottom: 5px double #d4af37;
+    box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.8), 0 4px 15px rgba(0, 0, 0, 0.5);
+    
     background-color: #FFFFFF;
-    border-bottom: 1px solid #E0E0E0;
-    padding: 15px 20px;
-    margin-bottom: 30px;
-        }
-       .header-container {
-    max-width: 800px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-       }
-       #langPicker {
-    padding: 8px 16px;
-    border-radius: 8px;
-    border: 1px solid #E0E0E0;
-    font-size: 0.9rem;
-    background-color: #FCFCFC;
-    cursor: pointer;
-      }
+    border-bottom: 1px solid #E2E8F0;
+    padding: 24px 20px;
+    margin-bottom: 25px;
+    width: 100%;
+    box-sizing: border-box;
+}
 
-    </style>
+.header-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+.nav-brand-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+.brand-left-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+}
+.brand-text{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.badge-ar {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #D4AF37;
+    margin-bottom: 2px;
+    font-family: 'Amiri', serif;
+}
+
+.brand-title {
+    font-size: 1.55rem;
+    font-weight: 800;
+    color: #f4e1a1; 
+    font-family: 'Inter', sans-serif;
+    letter-spacing: -0.5px;
+    line-height: 1.1;
+    margin: 0;
+    white-space: nowrap;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);
+}
+.brand-right-logo {
+    display: block;
+    width: 105px;
+    height: 105px;
+    flex-shrink: 0;
+}
+
+.brand-logo-img {
+    height: 100%;      
+    width: 100%;        
+    object-fit: contain;
+    display: block;
+}
+ .language-selector-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+#langPicker {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    
+    padding: 8px 14px 8px 32px;
+    font-size: 0.88rem;
+    font-weight: 500;
+    font-family: 'Inter', sans-serif;
+    color: #1E293B;
+    background-color: #FFFFFF;
+    border: 1px solid #CBD5E1; 
+    border-radius: 10px; 
+    cursor: pointer;
+    outline: none;
+    
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23475569' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: left 12px center;
+    background-size: 11px;
+}
+  </style>
 </head>
 <body>
-<header class="site-header">
+<header class="site-header" dir=ltr>
     <div class="header-container">
-        <div class="brand-logo">
-            <span class="badge-ar">الله الخاص</span>
-            <h1>ALLAH ALKHASU</h1>
+        <div class="nav-brand-group">
+            
+            <div class="brand-left-content">
+                <div class="language-selector-wrapper">
+                    <select id="langPicker" onchange="switchLanguage(this.value)">
+                        <option value="/">العربية (Arabic)</option>
+                        <option value="/fa/">فارسی</option>
+                        <option value="/hin/">हिन्दी</option>
+                        <option value="/tr/">Türkçe</option>
+                        <option value="/ms/">Melayu</option>
+                    </select>
+                </div>
+                
+                <div class="brand-text">
+                    <span class="badge-ar">الله الخاص</span>
+                    <h1 class="brand-title">ALLAH ALKHASU</h1>
+                </div>
+            </div>
+
+            <a href="/" class="brand-right-logo" aria-label="Allah Alkhasu Home">
+                <img src="https://i.ibb.co/TDRNxgQS/1779492252055-removebg-preview.png" alt="Allah Alkhasu Foundation Logo" class="brand-logo-img">
+            </a>
         </div>
-        <div class="language-selector">
-            <select id="langPicker" onchange="switchLanguage(this.value)">
-                <option value="/">العربية (Arabic)</option>
-                <option value="/fa/">فارسی (Farsi)</option>
-                <option value="/hin/">हिन्दी (Hindi)</option>
-                <option value="/tr/">Türkçe (Turkish)</option>
-                <option value="/ms/">Bahasa Melayu (Malay)</option>
-            </select>
-        </div>
-    </div>
 </header>
-    
-<div class="nav-accent"></div>
-
-<div class="main-wrapper">
-    <div class="card">
-        <header>
-            <span class="badge">الله الخاص </span>
-            <h1 style="font-weight: 700; letter-spacing: 0.5px; margin-bottom: 8px;">الله الخاسو</h1>
-            <p style="font-family: 'Georgia', serif; font-size: 1.2rem; color: var(--emerald-mid); font-style: italic; margin-bottom: 0;">دعم المجتمعات في الأزمات  </p>
-        </header>
-
-        <p class="lead-text">إخوتي وأخوتي الأعزاء,</p>
+      <p class="lead-text">إخوتي وأخوتي الأعزاء,</p>
 
         <p>كمسلمين، نحن مدعوون إلى التمسك بقيم الرحمة والرحمة والكرم التي يجسدها إيماننا. في أوقات الأزمات، سواء بسبب الكوارث الطبيعية أو النزاعات أو الفقر، هناك عدد لا يحصى من الأفراد والعائلات الذين يحتاجون بشدة إلى دعمنا. من واجبنا أن نرد على معاناتهم باللطف والعمل.</p>
 
